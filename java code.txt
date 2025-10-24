@@ -1,0 +1,328 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.*;
+
+/*<applet code="StudentRegistration" height=400 width=400>
+</applet>*/
+
+public class  StudentRegistration extends Applet implements ActionListener
+ {
+    Label usernameLabel, passwordLabel,fnameLabel;
+    TextField usernameField, passwordField;
+    Button loginButton;
+
+    public void init()
+	{
+        setLayout(null);
+
+		fnameLabel =new Label("Students Login");
+		fnameLabel.setBounds(100, 20, 100, 20);
+        add(fnameLabel);
+        usernameLabel = new Label("Username:");
+        usernameLabel.setBounds(50, 60, 80, 20);
+        add(usernameLabel);
+        usernameField = new TextField();
+        usernameField.setBounds(150, 60, 150, 20);
+        add(usernameField);
+
+        passwordLabel = new Label("Password:");
+        passwordLabel.setBounds(50, 90, 80, 20);
+        add(passwordLabel);
+        passwordField = new TextField();
+        passwordField.setBounds(150, 90, 150, 20);
+        passwordField.setEchoChar('*');
+        add(passwordField);
+
+        loginButton = new Button("Login");
+        loginButton.setBounds(100, 130, 80, 30);
+        add(loginButton);
+        loginButton.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        // Validate username and password (replace this with your actual validation logic)
+        if ((username.equals("radhika") && password.equals("1240")) || (username.equals("sushama") && password.equals("1226"))||(username.equals("snehal") && password.equals("1230") ))
+		{
+            // If credentials are valid, show the second applet
+            student s = new student();
+            s.init();
+            s.start();
+            removeAll();
+            setLayout(new BorderLayout());
+            add(s, BorderLayout.CENTER);
+        }
+		else
+			{
+            // If credentials are invalid, show an error message
+            // You can display an error message using a label or dialog box
+            Label errorLabel = new Label("Invalid username or password");
+            errorLabel.setBounds(50, 160, 200, 20);
+            add(errorLabel);
+        }
+    }
+public void paint(Graphics g)
+ {
+    Color c1 = new Color(115, 147, 179);
+    setBackground(c1);
+
+}
+}
+
+class student extends StudentRegistration implements ActionListener{
+
+
+    Label titleLabel, nameLabel, dobLabel, genderLabel, emailLabel, enrollmentLabel, yearLabel, courseLabel, addressLabel, stateLabel;
+    TextField nameTextField, dobTextField, emailTextField, enrollmentTextField, addressTextField;
+    Choice genderChoice, yearChoice, courseChoice, stateChoice;
+    Button submitButton, editButton, deleteButton;
+    TextArea outputArea; // New TextArea component to display stored data
+
+    public void init() {
+        // Setting layout to null to manually position components
+        setLayout(null);
+
+        // Title Label
+        titleLabel = new Label("Students Registration Form");
+        titleLabel.setBounds(100, 20, 200, 30);
+        add(titleLabel);
+
+        // Name Label and TextField
+        nameLabel = new Label("Name:");
+        nameLabel.setBounds(50, 60, 80, 20);
+        add(nameLabel);
+        nameTextField = new TextField();
+        nameTextField.setBounds(150, 60, 150, 20);
+        add(nameTextField);
+
+        // DOB Label and TextField
+        dobLabel = new Label("DOB:");
+        dobLabel.setBounds(50, 90, 80, 20);
+        add(dobLabel);
+        dobTextField = new TextField();
+        dobTextField.setBounds(150, 90, 150, 20);
+        add(dobTextField);
+
+        // Gender Label and Choice
+        genderLabel = new Label("Gender:");
+        genderLabel.setBounds(50, 120, 80, 20);
+        add(genderLabel);
+        genderChoice = new Choice();
+		genderChoice.add(" ");
+        genderChoice.add("Male");
+        genderChoice.add("Female");
+		genderChoice.add("Others");
+        genderChoice.setBounds(150, 120, 80, 20);
+        add(genderChoice);
+
+        // Email Label and TextField
+        emailLabel = new Label("Email:");
+        emailLabel.setBounds(50, 150, 80, 20);
+        add(emailLabel);
+        emailTextField = new TextField();
+        emailTextField.setBounds(150, 150, 150, 20);
+        add(emailTextField);
+
+        // Enrollment No Label and TextField
+        enrollmentLabel = new Label("Enrollment No:");
+        enrollmentLabel.setBounds(50, 180, 90, 20);
+        add(enrollmentLabel);
+        enrollmentTextField = new TextField();
+        enrollmentTextField.setBounds(150, 180, 150, 20);
+        add(enrollmentTextField);
+
+        // Year Label and Choice
+        yearLabel = new Label("Year:");
+        yearLabel.setBounds(50, 210, 80, 20);
+        add(yearLabel);
+        yearChoice = new Choice();
+		 yearChoice.add(" ");
+        yearChoice.add("FY");
+        yearChoice.add("SY");
+        yearChoice.add("TY");
+        yearChoice.setBounds(150, 210, 80, 20);
+        add(yearChoice);
+
+        // Course Label and Choice
+        courseLabel = new Label("Course:");
+        courseLabel.setBounds(50, 240, 80, 20);
+        add(courseLabel);
+        courseChoice = new Choice();
+		courseChoice.add(" ");
+        courseChoice.add("CO");
+        courseChoice.add("CE");
+        courseChoice.add("ME");
+        courseChoice.add("EE");
+        courseChoice.add("ENTC");
+        courseChoice.setBounds(150, 240, 80, 20);
+        add(courseChoice);
+
+        // Address Label and TextField
+        addressLabel = new Label("Address:");
+        addressLabel.setBounds(50, 285, 80, 20);
+        add(addressLabel);
+        addressTextField = new TextField();
+        addressTextField.setBounds(150, 270, 150, 60);
+        add(addressTextField);
+
+        // State Label and Choice
+        stateLabel = new Label("State:");
+        stateLabel.setBounds(50, 340, 80, 20);
+        add(stateLabel);
+        stateChoice = new Choice();
+        stateChoice.add(" ");
+        stateChoice.add("Aandhrapradesh");
+        stateChoice.add("Arunachal");
+        stateChoice.add("Bihar");
+		stateChoice.add("Chandigad");
+		stateChoice.add("Channai");
+		stateChoice.add("Delhi");
+		stateChoice.add("Goa");
+		stateChoice.add("Gujarat");
+		stateChoice.add("Hariyana");
+		stateChoice.add("Himachal");
+		stateChoice.add("Karnataka");
+		stateChoice.add("MadhyaPradesh");
+		stateChoice.add("Maharastra");
+		stateChoice.add("Panjab");
+		stateChoice.add("Rajasthan");
+		stateChoice.add("UttarPradesh");
+		stateChoice.add("Zarkhand");
+        stateChoice.setBounds(150, 340, 150, 20);
+        add(stateChoice);
+
+        // Submit Button
+        submitButton = new Button("Submit");
+        submitButton.setBounds(110, 380, 80, 30);
+        add(submitButton);
+        submitButton.addActionListener(this);
+
+        // Edit Button
+        editButton = new Button("Edit");
+        editButton.setBounds(50, 440, 80, 30);
+        add(editButton);
+        editButton.addActionListener(this);
+
+        // Delete Button
+        deleteButton = new Button("Delete");
+        deleteButton.setBounds(200, 440, 80, 30);
+        add(deleteButton);
+        deleteButton.addActionListener(this);
+
+        // Output TextArea
+        outputArea = new TextArea();
+        outputArea.setBounds(450, 50, 330, 350);
+        add(outputArea);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        // Handle button clicks here
+        if (e.getSource() == submitButton) {
+            // Get data from text fields and choice components
+            String name = nameTextField.getText();
+            String dob = dobTextField.getText();
+            String gender = genderChoice.getSelectedItem();
+            String email = emailTextField.getText();
+            String enrollment = enrollmentTextField.getText();
+            String year = yearChoice.getSelectedItem();
+            String course = courseChoice.getSelectedItem();
+            String address = addressTextField.getText();
+            String state = stateChoice.getSelectedItem();
+
+            // Append the data to the output area
+            outputArea.append("Name: " + name + "\n");
+            outputArea.append("DOB: " + dob + "\n");
+            outputArea.append("Gender: " + gender + "\n");
+            outputArea.append("Email: " + email + "\n");
+            outputArea.append("Enrollment No: " + enrollment + "\n");
+            outputArea.append("Year: " + year + "\n");
+            outputArea.append("Course: " + course + "\n");
+            outputArea.append("Address: " + address + "\n");
+            outputArea.append("State: " + state + "\n");
+            outputArea.append("-----------------------------\n");
+        }
+		else if (e.getSource() == editButton)
+			{
+            updateInformation();
+        }
+		else if (e.getSource() == deleteButton)
+			{
+            deleteInformation();
+        }
+    }
+
+    private void updateInformation() {
+    // Get selected text from the output area
+    String selectedText = outputArea.getSelectedText();
+    if (selectedText != null && !selectedText.isEmpty()) {
+        // Split the selected text into lines
+        String[] lines = selectedText.split("\\n");
+
+        // Update the fields based on the selected item
+        StringBuilder updatedInfo = new StringBuilder();
+        for (String line : lines) {
+            if (line.startsWith("Name:")) {
+                line = "Name: " + nameTextField.getText();
+            } else if (line.startsWith("DOB:")) {
+                line = "DOB: " + dobTextField.getText();
+            } else if (line.startsWith("Gender:")) {
+                line = "Gender: " + genderChoice.getSelectedItem();
+            } else if (line.startsWith("Email:")) {
+                line = "Email: " + emailTextField.getText();
+            } else if (line.startsWith("Enrollment No:")) {
+                line = "Enrollment No: " + enrollmentTextField.getText();
+            } else if (line.startsWith("Year:")) {
+                line = "Year: " + yearChoice.getSelectedItem();
+            } else if (line.startsWith("Course:")) {
+                line = "Course: " + courseChoice.getSelectedItem();
+            } else if (line.startsWith("Address:")) {
+                line = "Address: " + addressTextField.getText();
+            } else if (line.startsWith("State:")) {
+                line = "State: " + stateChoice.getSelectedItem();
+            }
+            updatedInfo.append(line).append(" ");
+        }
+
+        // Replace the selected text with updated information
+        String outputText = outputArea.getText();
+        int start = outputArea.getSelectionStart();
+        int end = outputArea.getSelectionEnd();
+        outputArea.setText(outputText.substring(0, start) + updatedInfo.toString() + outputText.substring(end));
+    }
+}
+
+private void deleteInformation() {
+    // Get the selected text from the output area
+    String selectedText = outputArea.getSelectedText();
+    if (selectedText != null && !selectedText.isEmpty()) {
+        // Remove the selected text from the output area
+        String outputText = outputArea.getText();
+        int start = outputArea.getSelectionStart();
+        int end = outputArea.getSelectionEnd();
+        outputArea.setText(outputText.substring(0, start) + outputText.substring(end));
+
+        // Optionally, you can also update the text fields and choice components to clear the deleted student's information
+        nameTextField.setText("");
+        dobTextField.setText("");
+        genderChoice.select("Male");
+        emailTextField.setText("");
+        enrollmentTextField.setText("");
+        yearChoice.select("FY");
+        courseChoice.select("CO");
+        addressTextField.setText("");
+        stateChoice.select("Aandhrapradesh");
+    }
+}
+
+public void paint(Graphics g) {
+    Color c1 = new Color(115, 147, 179);
+    setBackground(c1);
+    g.drawString("(yyyy-mm-dd)", 320, 75);
+    g.drawLine(950, 0, 950, 600);
+    g.drawLine(948, 0, 948, 600);
+    g.drawLine(0, 600, 950, 600);
+    g.drawLine(0, 598, 950, 598);
+}
+}
